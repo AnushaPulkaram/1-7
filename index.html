@@ -1,0 +1,222 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+          </head>
+    <body>
+    <div class="hline"></div><br>
+    <div class="heading"><b>Chapter 1. Understanding the NetView Installation</b></div><br>
+        <div class="margin">
+        <div>Before starting the installation and configuration procedures described in this book, perform the SMP/E <br>installation of the NetView product that is listed in the NetView program directory.</div>
+        <div>This document is designed to guide you through the installation, configuration, and verification of the NetView program in a minimum amount of time. The assumption for this document is that this is the first time that the NetView program is being installed on this system. Initially, make only essential changes to the sample definitions provided with the NetView program. Your first objective is a fast and error-free installation.</div><br>
+    <div>This chapter describes:</div>
+    <ul>
+        <li>The organization of the NetView program</li>
+        <li>Installation of the NetView program</li>
+        </ul>
+    <div>
+        <b>Migrating Users:</b> Refer to the <em>IBM Z NetView Installation: Migration Guide</em> for information on new and deleted functions from prior releases of the NetView product, as well as migration considerations for base functions.</div>
+        
+        </div><br><br>
+    <div class="heading2">NetView and Network Organization</div>
+    <div class="hline2"></div>
+    <div class="margin">A sample network comes with the NetView program. It contains definitions for both SNA and non-SNA resources. You can use this sample network as a model for building a new network or for expanding your existing network. For more information about the sample network, see <u>Appendix B, “NetView Samples Overview,” on page 101.</u></div>
+    <div class="subheading"><b>Organization of the NetView Program</b></div>
+        <div class="margin">You can use the NetView program to manage your systems and networks from one console and can benefit users of small or large networks and small or large systems. Small installations with a limited staff can take advantage of NetView graphics and automation functions to simplify operator jobs and improve productivity. Graphics and automation can reduce, simplify, and in some cases even eliminate operator intervention, enabling faster and more reliable problem diagnosis and resolution.</div>
+<div class="margin"> These same advantages apply to large installations, contending with a higher volume of activity, and greater complexity. These users can automate repetitive and syntax-sensitive tasks to improve reaction time and reduce human errors. They can also automate knowledge-intensive tasks, such as problem determination, and develop expert systems, using the NetView programming interfaces.</div>
+<div class="margin"> <u>Figure 1 on page 2</u> shows the relationship between NetView components.
+</div><br><br><br>
+    <img src="img.jpg"><br><br>
+       <div class="margin"> <em>Figure 1. NetView Program Host Components</em>
+        <br><br>
+        The NetView program includes the following components:</div>
+       <ul>
+    <li>The command facility is used to send commands and receive messages. The command facility also provides base functions and services for other components such as intercomponent communication, presentation services, database services, and automation facilities.</li>
+    <li>The hardware monitor component collects and displays events and statistical data for both hardware and software to identify failing resources in a network. It provides probable cause and recommended actions so that operators can perform problem determination more efficiently.</li>
+    <li>The session monitor component provides information about SNA sessions (subarea and Advanced Peer-to-Peer Networking) including session partner identification, session status, connectivity of active sessions, and response time data. The session monitor also provides session trace data, route data, and Virtual Telecommunications Access Method (VTAM) sense code information for problem determination.</li>
+    <li>The terminal access facility (TAF) provides operator control of any combination of CICS, IMS, TSO, and other subsystems from one terminal. The operator does not have to log off or use a separate terminal for each subsystem. The subsystem can be in the same domain or in another domain.</li>
+    <li>The SNA topology manager dynamically collects topology and status of Advanced Peer-to-Peer Networking and subarea resources. This data is stored in the Resource Object Data Manager (RODM) for display by the NetView management console.
+           <br><br>
+        The topology agent supplies information consisting of the SNA nodes in a network, the Advanced Peer- to-Peer Networking transmission groups (TGs) between them, and the underlying logical links and ports supporting the TGs, in response to requests from the manager application.
+           </li>
+           <li>Automated Operations Network (AON) uses NetView automation facilities to automate the monitoring and recovery of both TCP/IP and SNA network resources. AON can monitor messages and alerts, and then automatically perform recovery actions. AON also provides an automated help desk to assist with resolving network problems, and generates reports so that you can monitor how well your automation is working.<br><br>
+           AON provides default policy definitions that enable automation, without lengthy configuration, as soon as AON is enabled.</li>
+    <li>MultiSystem Manager provides for the management of distributed resources from the NetView program. The NetView operator can use MultiSystem Manager to view and manage resources that are identified and managed locally by products. The topology and status of these resources are dynamically managed through RODM and the graphical workstation components of the NetView program.</li>
+    <li>The browse facility is used to view local or remote NetView data set members including the Canzlog log, NetView log, NetView parameter files, and NetView panels.</li>
+    <li>With the NetView automation table, you can specify processing options for incoming messages and MSUs and issue automatic responses. The table contains a sequence of statements that define the actions that the NetView program can take in various circumstances. The automation table is one of several components that provide automation capabilities.</li>
+    <li>The status monitor component provides status information about SNA subarea network resources.</li>
+    <li>Resource Object Data Manager (RODM) is an object-oriented data cache. Objects in RODM can represent resources in your network. The data cache is located entirely in the memory of the host processor for fast access to data and high transaction rates. RODM can contain approximately 2 million objects, providing support for large and growing networks.</li>
+
+
+           
+</ul>
+<div class="margin">
+        MultiSystem Manager provides for the management of distributed resources from the NetView program. The NetView operator can use MultiSystem Manager to view and manage resources that are identified and managed locally by an Open agent created by you or a vendor. The topology and status of these resources are dynamically managed through RODM and the graphical workstation components of the NetView program.<br><br>
+Additionally, authorized operators can use the RODMVIEW command to display, create, update, and delete classes, objects, fields, and relationships in RODM.
+        </div>
+        <ul>
+        <li>The NetView Graphic Monitor Facility host subsystem component maintains the status of resources in RODM and supplies the NetView Management Console with information about RODM resources. It works with RODM and the NetView Management Console to display graphic views of networks and to issue commands to resources that you select from a NetView Management Console view.<br><br>
+            The Graphic Monitor Facility host subsystem works with the SNA topology manager and the NetView Management Console to manage SNA resources. It works with MultiSystem Manager and the NetView Management Console to manage non-SNA resources.</li>
+            <li>The Z NetView Enterprise Management Agent provides information that you can use to manage your network from the Tivoli Enterprise Portal using sampled and real-time data. The data provides information about network resources and outages, using situations and expert advice, as well as trends in your network through the use of historical data. You can issue NetView, VTAM, and z/OS commands directly from the Tivoli Enterprise Portal to provide instant display and troubleshooting capabilities. The NetView agent enables you to manage both availability and performance data from the Tivoli Enterprise Portal using cross-product links to selected z/OS OMEGAMON® XE agents.</li>
+            <li>The subsystem interface is used to receive system messages and to enter system commands. With extended multiple console support (EMCS) consoles, the subsystem interface is used to receive commands, but not messages. In a single system, multiple NetView programs can use the subsystem interface. Each NetView program that uses the subsystem interface requires a NetView subsystem address space in addition to the NetView application address space.<br><br>
+                You can use the message revision table to intercept z/OS messages before they are displayed, logged, automated, or routed through your sysplex. With this table, you can make decisions about a message based on its message ID, job name, and other properties and can revise or suppress a message or take certain actions. The message revision table is one of several components that provide automation capabilities.<br><br>
+You can use the command revision table to intercept z/OS commands and make simple modifications inline, without needing to transfer the command to the NetView application address space. Commands can be deleted; parameters and keywords can be added, removed, or modified; nicknames can be expanded (such as creating new command or parameter synonyms); and explanatory WTO messages can be issued. The command revision table is one of several components that provide automation capabilities.<br><br>
+The program-to-program interface (PPI) is an address space provided by the NetView program to enable application programs to communicate with the NetView program and other applications running in the same host. When an application calls the PPI using its application programming interface (API), the request is synchronous.
+            </li>
+            <li>The correlation engine correlates multiple events over time, based on duplicates, thresholds, presence or absence of specific events, and other user-specified criteria. The correlation engine is one of several components that provide automation capabilities.</li>
+            <li>The Event/Automation Service (E/AS) serves as a gateway for event data between the IBM Z NetView management environment, IBM Tivoli Netcool/OMNIbus probes, and SNMP managers and agents. With this gateway function, you can manage all network events from the management platform of your choice.</li>
+            <li>The NetView REST Server is an OpenAPI-conforming server that handles front-end requests from applications and provides RESTful APIs that are suited for industry standardization to interact with automation and network resources.<br><br>
+            The server can be accessed within Zowe™, hosted by the Open Mainframe Project, or independently from an application. The server runs in UNIX System Services (USS). APIs are available in the following areas:<br><br>
+            –Canzlog messages and message attributes<br>
+–Automation table statements and automation members<br>
+–Sysplex connection distribution statistics for distributed dynamic virtual IP addresses (DDVIPAs) and ports<br>
+–NetView task health<br>
+–NetView domains accessible to an Enterprise Master NetView program or a Sysplex Master NetView program<br>
+–NetView commands<br><br>
+                Swagger documentation can be accessed through the Zowe API Mediation Layer or directly from the server.<br><br>
+IBM Server Management Unite Automation V1.1.7 is available with IBM Z NetView V6.3.
+            
+            </li>
+        </ul>
+        <div class="margin">
+        For more information about NetView components, see Appendix A, “NetView Functions and Tasks,” on page 89.</div>
+        
+        <div class="subheading"><b>Naming Conventions</b>
+        </div>
+        <div class="margin">The NetView program uses the following types of data sets:</div>
+        <ul>
+    <li>System data sets</li>
+    <li>NetView user partitioned data sets</li>
+    <li>NetView VSAM data sets</li>
+    <li>NetView sequential data sets</li>
+    <li>UNIX system services (USS) file system data sets</li>
+</ul>
+<div class="margin">System data sets use the high-level qualifier NETVIEW.V6R3M0 as the default naming convention. This high-level qualifier is specified as &SQ1 in the NetView Job Control Language (JCL) samples.<br><br>
+NetView user partitioned data sets use the following default naming convention:</div>
+        <ul>
+    <li>The high-level qualifier is NETVIEW.V6R3USER, specified as &Q1 in the NetView JCL.</li>
+    <li>The middle-level qualifier is the host NetView domain.</li>
+    <li>The low-level qualifier is the library name.</li>
+</ul>
+<div class="margin">
+        For example, with data set NETVIEW.V6R3USER.CNM01.DSIPARM, the high-level qualifier is NETVIEW.V6R3USER, the middle-level qualifier is CNM01, and the low-level qualifier is DSIPARM.<br><br>
+NetView VSAM data sets have the following default naming convention:</div>
+     <ul>
+    <li>The high-level qualifier is NETVIEW, specified as &VQ1 in the NetView JCL.</li>
+    <li>The middle-level qualifier, when specified, is the host NetView domain.</li>
+    <li>In most cases, the low-level qualifier is defined by the DSTINIT primary VSAM DD name (PDDNM) and secondary VSAM DD name (SDDNM) for the initialization member associated with a specific NetView component.</li>
+</ul>
+
+        <div class="margin">
+        For example, with NETVIEW.CNM01.DSILOGP, the high-level qualifier is NETVIEW, the middle-level qualifier is CNM01, and the low-level qualifier is DSILOGP.<br><br>
+NetView sequential data sets have the following default naming convention:</div>
+       <ul>
+        <li>The high-level qualifier is NETVIEW, specified as &TQ1 in the CNMPROC (CNMSJ009) procedure.</li>
+           <li>The middle-level qualifier is the host NetView domain.</li>
+        </ul> 
+        <div class="margin">
+        For example, with NETVIEW.CNM01.CNMDVIPP, the high-level qualifier is NETVIEW, the middle-level qualifier is CNM01, and the low-level qualifier is CNMDVIPP.<br><br>
+You can substitute your own values for &SQ1, &Q1, &VQ1, and &TQ1 in the JCL samples and procedures that are supplied with the NetView product.<br><br>
+The NetView program also uses zSeries file system (zFS) data sets relative to z/OS UNIX system services as described in the NetView program directory. The NetView program allocates the following directories:
+        </div>
+        <div class="back">
+        <ul>
+    <li>./usr/lpp/netview/v6r3/bin</li>
+    <li>./usr/lpp/netview/v6r3/mibs</li>
+    <li>./usr/lpp/netview/v6r3/lib</li>
+    <li>./usr/lpp/netview/v6r3/samples</li>
+    <li>./usr/lpp/netview/v6r3/samples/at-tls</li>
+    <li>./usr/lpp/netview/v6r3/samples/properties</li>
+    <li>./usr/lpp/netview/v6r3/www</li>
+    <li>./usr/lpp/netview/v6r3/www/img</li>
+</ul>  </div><br>
+     <div class="heading2">
+        <b>Installation Package</b></div>   
+        <div class="hline2"></div><br>
+        <div class="margin">
+        If you are installing the NetView program for the first time, you will find familiar IBM fulfillment methods (such as Shop zSeries), installation tools (such as SMP/E or InstallShield), and installation documentation, including a program directory.<br><br>
+Product media (or their electronic representation) are in the standard IBM relfile format that IBM software manufacturing uses to create the images for installation systems such as ServerPac and CBPDO. If you receive your product through the CBPDO system, maintenance is included on the media for you to install. If you receive your product as part of a ServerPac or SystemPac system, maintenance is preinstalled.<br><br>
+For detailed information about the installation package contents, see the NetView program directory.<br><br> Workstation-based NetView code is shipped in two formats:
+        </div>
+        <ul>
+        <li>DVD</li>
+            <li>Tivoli website:</li>
+        </ul>
+        <div class="back">
+        http://www.ibm.com/software/tivoli/products/netview-zos/</div><br>
+        <div class="margin">For service updates to workstation-based NetView code, see the Tivoli website.
+</div>
+        <br><br>
+         <div class="heading2">
+        <b>NetView Program Directory</b></div>   
+        <div class="hline2"></div>
+        <div class="margin">
+        <em>The Program Directory for IBM Z NetView, GI11-9444 (English) or GI11-9445 (Japanese)</em> is shipped with the product and is also available on the IBM Z NetView Knowledge Center. The Program Directory provides instructions to install the NetView product to the SMP/E libraries. In addition, it contains helpful hints for a problem-free installation. It also lists the program temporary fixes (PTFs) that enable other products to work properly with NetView. Read the NetView program directory to help ensure a problem- free installation.
+        </div>
+        <br><br>
+        <div class="heading2">
+       <b> Preventive Service Planning (PSP</b>)</div>   
+        <div class="hline2"></div>
+        <div class="margin">
+        Before you install the NetView program, make sure that you review the current Preventive Service Planning (PSP) information. For information on how to access PSP information, see the <em>Program Directory for IBM Z NetView</em>.
+        </div><br><br>
+                <div class="heading2">
+       Applying a Required PTF</div>   
+        <div class="hline2"></div><br>
+        <div class="margin">
+        
+        The NetView program directory lists APARs from the previous release that have been created for z/OS products to work with this NetView release.<br><br>
+The program directory also lists APARs from the previous NetView releases that are incorporated into the release. Check with the IBM Support Portal to obtain the latest available service.</div><br><br>
+        
+        <div class="heading2">
+        Estimating Required Resources
+        </div>
+         <div class="hline2"></div><br>
+        <div class="margin">
+        Refer to the <em>IBM Z NetView Tuning Guide</em> and the NetView program directory for information about estimating the hardware and software resources required to install NetView. If you cannot determine how to estimate the resource types, call IBM Software Support at 1-800-237-5511 or contact your IBM Software Support account representative.
+</div><br><br>
+        <div class="heading2">
+        Installation and Configuration Procedures
+        </div>
+         <div class="hline2"></div><br>
+        <div class="margin">
+        Installation and configuration steps described in this book follow this order:
+         </div>
+        <ol>
+    <li>Installing the NetView program from the distribution media using z/OS SMP/E with the help of the NetView program directory</li>
+    <li>Preparing your MVS system for the NetView program</li>
+    <li>Customizing and running sample jobs to install the basic functions of the NetView program and the sample network</li>
+    <li>Preparing VTAM system definitions</li>
+    <li>Starting the NetView program and verifying your installation</li>
+</ol>
+
+        
+        <div class="margin">
+        Use the sample network as a model for building a new network or for expanding your existing network. All VTAM, NetView, and NCP definition statements are supplied as samples. The CNMSAMP library providesthe JCL and data necessary to build the entire network in subarea 01. Also included, is network NETB which shows a multiple-network environment. Network NETB has one host subarea, 01.<br><br>
+This book assumes that you are installing NetView using the default values provided in this manual and in the sample files (installation in subarea 01 and using domain CNM01 for network NETA). If you are installing the NetView program in a subarea other than 01 or a domain other than CNM01, see the sample data set members for directions on what to change.
+        </div><br>
+        <div class="heading2">
+       Installation Results
+        </div>
+         <div class="hline2"></div><br>
+        <div class="margin">
+        When you complete the procedures described in this book, the following functions are operational:</div>
+        <ul>
+    <li>Base NetView components including the command facility, hardware monitor, and session monitor</li>
+    <li>Automation table to respond automatically to messages and MSUs, including alerts</li>
+    <li>Canzlog log that stores NetView and system messages</li>
+    <li>NetView log that stores messages and commands</li>
+    <li>Save / Restore VSAM facility to save critical information across NetView restarts</li>
+    <li>NetView to NetView remote command processing (RMTCMD)</li>
+    <li>TCP/IP connection management</li>
+    <li>Discovery manager</li>
+    <li>XCF services</li>
+</ul>
+<div class="margin">
+        When the NetView program is installed and functioning correctly, many NetView functions are not yet active.
+        </div>
+        
+        <div class="img1">
+        <img src="img2.png"> </div> 
+        
+    </body>
+</html>
